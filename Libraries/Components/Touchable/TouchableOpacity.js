@@ -66,11 +66,18 @@ var TouchableOpacity = React.createClass({
      * Apple TV parallax effects
      */
     tvParallaxProperties: PropTypes.object,
+    /**
+     * *(Apple TV Only)* Whether or not this Touchable is TV Focusable.
+     *
+     * @platform ios
+     */
+    isTVSelectable: React.PropTypes.bool,
   },
 
   getDefaultProps: function() {
     return {
       activeOpacity: 0.2,
+      isTVSelectable: true,
       focusedOpacity: 0.7,
     };
   },
@@ -183,7 +190,7 @@ var TouchableOpacity = React.createClass({
         nativeID={this.props.nativeID}
         testID={this.props.testID}
         onLayout={this.props.onLayout}
-        isTVSelectable={true}
+        isTVSelectable={this.props.isTVSelectable}
         tvParallaxProperties={this.props.tvParallaxProperties}
         hitSlop={this.props.hitSlop}
         onStartShouldSetResponder={this.touchableHandleStartShouldSetResponder}

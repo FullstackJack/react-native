@@ -34,6 +34,7 @@ type Event = Object;
 
 var DEFAULT_PROPS = {
   activeOpacity: 0.85,
+  isTVSelectable: true,
   underlayColor: 'black',
 };
 
@@ -108,7 +109,12 @@ var TouchableHighlight = React.createClass({
      * @platform ios
      */
     tvParallaxProperties: PropTypes.object,
-
+    /**
+     * *(Apple TV Only)* Whether or not this Touchable is TV Focusable.
+     *
+     * @platform ios
+     */
+    isTVSelectable: React.PropTypes.bool,
   },
 
   mixins: [NativeMethodsMixin, TimerMixin, Touchable.Mixin],
@@ -132,7 +138,8 @@ var TouchableHighlight = React.createClass({
         INACTIVE_UNDERLAY_PROPS.style,
         props.style,
       ],
-      hasTVPreferredFocus: props.hasTVPreferredFocus
+      hasTVPreferredFocus: props.hasTVPreferredFocus,
+      isTVSelectable: props.isTVSelectable
     };
   },
 
@@ -264,7 +271,7 @@ var TouchableHighlight = React.createClass({
         style={this.state.underlayStyle}
         onLayout={this.props.onLayout}
         hitSlop={this.props.hitSlop}
-        isTVSelectable={true}
+        isTVSelectable={this.props.isTVSelectable}
         tvParallaxProperties={this.props.tvParallaxProperties}
         hasTVPreferredFocus={this.state.hasTVPreferredFocus}
         onStartShouldSetResponder={this.touchableHandleStartShouldSetResponder}
