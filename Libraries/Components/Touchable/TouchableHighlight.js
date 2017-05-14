@@ -110,7 +110,7 @@ var TouchableHighlight = React.createClass({
      */
     tvParallaxProperties: PropTypes.object,
     /**
-     * *(Apple TV Only)* Whether or not this Touchable is TV Focusable.
+     * *(Apple TV Only)* Whether or not this Touchable is selectable by tvOS Focus Engine.
      *
      * @platform ios
      */
